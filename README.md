@@ -6,7 +6,7 @@ This repository contains my implementations of the assignments from the [Princet
 A model to estimate the value of the percolation threshold via Monte Carlo simulation.
 
 ### The Problem
-Given a composite system comprised of randomly distributed insulating and metallic materials: what fraction of the materials need to be metallic so that the composite system is an electrical conductor? This is modeled using an $n$-by-$n$ grid of sites that are either "open" or "blocked."
+Given a composite system comprised of randomly distributed insulating and metallic materials: what fraction of the materials need to be metallic so that the composite system is an electrical conductor? This is modeled using an n-by-n grid of sites that are either "open" or "blocked."
 
 ### Implementation Details
 * **Data Structure:** Used `WeightedQuickUnionUF` to maintain connectivity between sites.
