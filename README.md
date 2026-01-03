@@ -35,3 +35,23 @@ Build two generic data structures: a **Deque** (double-ended queue) that allows 
 ### Efficiency
 * **Deque:** Guaranteed constant time $O(1)$ for all operations. Memory usage is proportional to the number of items ($48n$ bytes).
 * **Randomized Queue:** Constant amortized time $O(1)$ for all operations. Array resizing ensures memory usage is always within $25\%$ to $100\%$ full.
+
+---
+
+## Assignment 3: Collinear Points
+A pattern recognition algorithm to identify every line segment connecting 4 or more points in a set.
+
+### The Problem
+Given a set of $n$ distinct points in the plane, find every line segment that connects a subset of 4 or more of the points. The solution must handle corner cases (duplicate points, vertical lines) and avoid identifying sub-segments (only "maximal" segments should be returned).
+
+### Implementation Details
+* **Point Data Type:** Implemented a `Comparator` to compare points by the slope they make with an invoking point. Handled edge cases for vertical lines ($+\infty$), horizontal lines ($+0.0$), and degenerate segments ($-\infty$).
+* **Brute Force Approach:** A naive solution that checks every combination of 4 points using 4 nested loops. Time complexity: $O(N^4)$.
+* **Fast Sorting Approach:** An optimized algorithm using a "Lighthouse" strategy:
+    * **Sorting by Slope:** For every point $p$, we treat it as an origin and sort all other points by the slope they make with $p$.
+    * **Finding Runs:** Because the points are sorted by slope, collinear points appear as contiguous "runs" (adjacent blocks) in the array. We scan the array to identify streaks of 3 or more points with equal slopes.
+    * **Maximal Segments:** To prevent duplicates and sub-segments, we enforce a strict ordering rule: a segment is only recorded if point $p$ is strictly smaller (lexicographically) than all other points in the collinear set.
+
+### Efficiency
+* **FastCollinearPoints:** Achieves $O(N^2 \log N)$ time complexity. The bottleneck is the sorting operation ($N \log N$) performed for each of the $N$ points.
+* **Space Complexity:** Uses $O(N)$ space for auxiliary arrays during sorting.
